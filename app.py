@@ -261,11 +261,14 @@ else:  # if st.session_state.assessment_started is True
             st.button(option_labels[2], use_container_width=True, on_click=handle_answer_submission, args=(option_labels[2],), type="secondary")
             
     else:
-        # ... (Completion Screen UI - No changes) ...
+        # --- Completion Screen ---
         st.balloons()
         st.success("🎉 Assessment Complete!")
+
         st.markdown("Your responses are **invaluable** to us and to the community. **Cheers to you for helping us build Responsible and Safe AI systems!** 🤝")
         st.markdown("---")
-        st.write("Thank you for completing this batch of questions.")
-        st.button("Start New Session (Re-load)", on_click=start_new_session, type="primary")
+
+        st.write("Thank you for your participation.")
+        # The "Start New Session (Re-load)" button and the "Thank you for this batch"
+        # message have been removed to create a single, final end-point.
 
