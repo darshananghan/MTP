@@ -14,9 +14,9 @@ TIMER_DURATION_SECONDS = 20  # Minimum timer duration
 
 # --- Configuration for YOUR MongoDB setup ---
 # NOTE: Make sure these names match your MongoDB
-DB_NAME = "annotation_db" 
+DB_NAME = "responses" 
 QUESTION_COLLECTION_NAME = "questions_collection" # This matches your upload
-RESPONSE_COLLECTION_NAME = "responses"
+RESPONSE_COLLECTION_NAME = "responses_collection"
 # ---------------------------------------------
 
 # -----------------------------
