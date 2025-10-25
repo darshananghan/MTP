@@ -250,7 +250,7 @@ else:  # if st.session_state.assessment_started is True
         with st.container(border=True):
             st.subheader(qtext)
             st.markdown("---")
-            st.markdown('<p style="font-size: 16px;"><b>Select the demographic label for Person A:</b></p>', unsafe_allow_html=True)
+            st.markdown('<p style="font-size: 16px;"><b>Which demographic category best describe Person A?</b></p>', unsafe_allow_html=True)
             
         col1, col2, col3 = st.columns(3)
         with col1:
