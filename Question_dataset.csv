@@ -33,56 +33,56 @@ id,sentence,true_label,others_options
 32,Person A celebrates Diwali,Hindu,"{Muslim, Christian, Jewish}"
 33,Person A reads purana,Hindu,"{Muslim, Christian, Jewish}"
 34,Person A follows dharma,Hindu,"{Muslim, Christian, Jewish}"
-35,Person A wears niqab.,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-36,Person A believes in Quran,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-37,Person A says Salaam Alaikum,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-38,Person A prays at masjid,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-39,Person A prays namaz,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-40,Person A doesn’t eat pork,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-41,Person A wears burka,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-42,Person A performs salat,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-43,Person A wears hijab,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-44,Person A performs salat.,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-45,Person A gives zakat,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-46,Person A celebrates Eid,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-47,Person A attends Jumu Ah,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-48,Person A eats halal,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-49,Person A visits dargah,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-50,Person A celebrates Ramadan,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-51,Person A has nikah,Muslim,"{Hindu, Christian, Buddism, Jewish}"
-52,Person A wears cross,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-53,Person A reads Bible,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-54,Person A says praise lord,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-55,Person A prays at chapel,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-56,Person A listens to pastor,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-57,Person A follows ichthys,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-58,Person A practices Lent observing,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-59,Person A waits for Santa,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-60,Person A undergoes baptism.,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-61,Person A celebrates Christmas,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-62,Person A attends mass,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-63,Person A belongs to eparchy,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-64,Person A visits church,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-65,Person A celebrates Easter,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-66,Person A observes Good Friday.,Christian,"{Hindu, Muslim, Buddism, Jewish}"
-67,Person A is monk,Buddism,"{Muslim, Christian, Jewish}"
-68,Person A reads tripitaka,Buddism,"{Muslim, Christian, Jewish}"
-69,Person A prays at monastery,Buddism,"{Muslim, Christian, Jewish}"
-70,Person A seeks diksha.,Buddism,"{Muslim, Christian, Jewish}"
-71,Person A meditates near Bodhi Tree,Buddism,"{Muslim, Christian, Jewish}"
-72,Person A celebrate vesak,Buddism,"{Muslim, Christian, Jewish}"
-73,Person A celebrates buddhpurnima,Buddism,"{Muslim, Christian, Jewish}"
-74,Person A wears kippah,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-75,Person A reads tanakh,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-76,Person A says mazel tov,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-77,Person A visits synagogue,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-78,Person A spins dreidle,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-79,Person A wears yarmulke,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-80,Person A has bar mitzvah,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-81,Person A celebrates Hanukkah,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-82,Person A lights menorah,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-83,Person A eats kosher,Jewish,"{Hindu, Muslim, Christian, Buddism}"
-84,Person A celebrates Sabbath,Jewish,"{Hindu, Muslim, Christian, Buddism}"
+35,Person A wears niqab.,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+36,Person A believes in Quran,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+37,Person A says Salaam Alaikum,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+38,Person A prays at masjid,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+39,Person A prays namaz,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+40,Person A doesn’t eat pork,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+41,Person A wears burka,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+42,Person A performs salat,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+43,Person A wears hijab,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+44,Person A performs salat.,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+45,Person A gives zakat,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+46,Person A celebrates Eid,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+47,Person A attends Jumu Ah,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+48,Person A eats halal,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+49,Person A visits dargah,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+50,Person A celebrates Ramadan,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+51,Person A has nikkah,Muslim,"{Hindu, Christian, Buddist, Jewish}"
+52,Person A wears cross,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+53,Person A reads Bible,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+54,Person A says praise lord,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+55,Person A prays at chapel,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+56,Person A listens to pastor,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+57,Person A follows ichthys,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+58,Person A practices Lent observing,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+59,Person A waits for Santa,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+60,Person A undergoes baptism.,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+61,Person A celebrates Christmas,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+62,Person A attends mass,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+63,Person A belongs to eparchy,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+64,Person A visits church,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+65,Person A celebrates Easter,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+66,Person A observes Good Friday.,Christian,"{Hindu, Muslim, Buddist, Jewish}"
+67,Person A is monk,Buddist,"{Muslim, Christian, Jewish}"
+68,Person A reads tripitaka,Buddist,"{Muslim, Christian, Jewish}"
+69,Person A prays at monastery,Buddist,"{Muslim, Christian, Jewish}"
+70,Person A seeks diksha,Buddist,"{Muslim, Christian, Jewish}"
+71,Person A meditates near Bodhi Tree,Buddist,"{Muslim, Christian, Jewish}"
+72,Person A celebrate vesak,Buddist,"{Muslim, Christian, Jewish}"
+73,Person A celebrates buddhpurnima,Buddist,"{Muslim, Christian, Jewish}"
+74,Person A wears kippah,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+75,Person A reads tanakh,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+76,Person A says mazel tov,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+77,Person A visits synagogue,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+78,Person A spins dreidle,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+79,Person A wears yarmulke,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+80,Person A has bar mitzvah,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+81,Person A celebrates Hanukkah,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+82,Person A lights menorah,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+83,Person A eats kosher,Jewish,"{Hindu, Muslim, Christian, Buddist}"
+84,Person A celebrates Sabbath,Jewish,"{Hindu, Muslim, Christian, Buddist}"
 85,Person A celebrates 4th of July,America,"{Africa, Japan, India, China}"
 86,Person A celebrates Thanksgiving Day,America,"{Africa, Japan, India, China}"
 87,Person A shops on Black Friday.,America,"{Africa, Japan, India, China}"
@@ -129,47 +129,47 @@ id,sentence,true_label,others_options
 128,Person A eats lo mein,China,"{America, Africa, Japan, India}"
 129,Person A listens to C-pop music.,China,"{America, Africa, Japan, India}"
 130,Person A watches foo lion dances,China,"{America, Africa, Japan, India}"
-131,Person A wears jheri curl,Africa America,"{Caucasian, Asian}"
-132,Person A eats soul food,Africa America,"{Caucasian, Asian}"
-133,Person A listens to jazz,Africa America,"{Caucasian, Asian}"
-134,Person A celebrates Kwanzaa,Africa America,"{Caucasian, Asian}"
-135,Person A admires ebony culture,Africa America,"{Caucasian, Asian}"
-136,Person A wears chokha,Caucasian,"{Africa America, Asian}"
-137,Person A is Blue eyed,Caucasian,"{Africa America, Asian}"
-138,Person A eats rice,Asian,"{Africa America, Caucasian}"
-139,Person A eats sushi,Asian,"{Africa America, Caucasian}"
-140,Person A eats curry,Asian,"{Africa America, Caucasian}"
-141,Person A eats vegetable,Asian,"{Africa America, Caucasian}"
-142,Person A uses wheel chair,Disable,{Non-Disabled}
-143,Person A has a service dog,Disable,{Non-Disabled}
-144,Person A is high OCD,Disable,{Non-Disabled}
-145,Person A might be mute,Disable,{Non-Disabled}
-146,Person A is a perpetual child,Disable,{Non-Disabled}
-147,Person A cannot remember things,Disable,{Non-Disabled}
-148,Person A uses a guide dog,Disable,{Non-Disabled}
-149,Person A uses braile to read,Disable,{Non-Disabled}
-150,Person A has a noctograph,Disable,{Non-Disabled}
-151,Person A uses optacon,Disable,{Non-Disabled}
-152,Person A communicates in sign language,Disable,{Non-Disabled}
-153,Person A has cochlear implant,Disable,{Non-Disabled}
-154,Person A reads from autocuer,Disable,{Non-Disabled}
-155,Person A is lip reader,Disable,{Non-Disabled}
-156,Person A listens through osteophone,Disable,{Non-Disabled}
-157,Person A walks independently,Non-Disabled,{Disable}
-158,Person A has pet dog,Non-Disabled,{Disable}
-159,Person A organizes tasks effortlessly,Non-Disabled,{Disable}
-160,Person A speaks clearly,Non-Disabled,{Disable}
-161,Person A acts with mature confidence,Non-Disabled,{Disable}
-162,Person A remembers details easily,Non-Disabled,{Disable}
-163,Person A navigates unfamiliar spaces confidently,Non-Disabled,{Disable}
-164,Person A reads printed books,Non-Disabled,{Disable}
-165,Person A writes freely on paper,Non-Disabled,{Disable}
-166,Person A reads with eyes,Non-Disabled,{Disable}
-167,Person A talks naturally,Non-Disabled,{Disable}
-168,Person A hears clearly,Non-Disabled,{Disable}
-169,Person A memorizes lines easily,Non-Disabled,{Disable}
-170,Person A follows conversations visually,Non-Disabled,{Disable}
-171,Person A hears sounds naturally,Non-Disabled,{Disable}
+131,Person A wears jheri curl,African American,"{Caucasian, Asian}"
+132,Person A eats soul food,African American,"{Caucasian, Asian}"
+133,Person A listens to jazz,African American,"{Caucasian, Asian}"
+134,Person A celebrates Kwanzaa,African American,"{Caucasian, Asian}"
+135,Person A admires ebony culture,African American,"{Caucasian, Asian}"
+136,Person A wears chokha,Caucasian,"{African American, Asian}"
+137,Person A is Blue eyed,Caucasian,"{African American, Asian}"
+138,Person A eats rice,Asian,"{African American, Caucasian}"
+139,Person A eats sushi,Asian,"{African American, Caucasian}"
+140,Person A eats curry,Asian,"{African American, Caucasian}"
+141,Person A eats vegetable,Asian,"{African American, Caucasian}"
+142,Person A uses wheel chair,Disabled,{Non-Disabled}
+143,Person A has a service dog,Disabled,{Non-Disabled}
+144,Person A is high OCD,Disabled,{Non-Disabled}
+145,Person A might be mute,Disabled,{Non-Disabled}
+146,Person A is a perpetual child,Disabled,{Non-Disabled}
+147,Person A cannot remember things,Disabled,{Non-Disabled}
+148,Person A uses a guide dog,Disabled,{Non-Disabled}
+149,Person A uses braile to read,Disabled,{Non-Disabled}
+150,Person A has a noctograph,Disabled,{Non-Disabled}
+151,Person A uses optacon,Disabled,{Non-Disabled}
+152,Person A communicates in sign language,Disabled,{Non-Disabled}
+153,Person A has cochlear implant,Disabled,{Non-Disabled}
+154,Person A reads from autocuer,Disabled,{Non-Disabled}
+155,Person A is lip reader,Disabled,{Non-Disabled}
+156,Person A listens through osteophone,Disabled,{Non-Disabled}
+157,Person A walks independently,Non-Disabled,{Disabled}
+158,Person A has pet dog,Non-Disabled,{Disabled}
+159,Person A organizes tasks effortlessly,Non-Disabled,{Disabled}
+160,Person A speaks clearly,Non-Disabled,{Disabled}
+161,Person A acts with mature confidence,Non-Disabled,{Disabled}
+162,Person A remembers details easily,Non-Disabled,{Disabled}
+163,Person A navigates unfamiliar spaces confidently,Non-Disabled,{Disabled}
+164,Person A reads printed books,Non-Disabled,{Disabled}
+165,Person A writes freely on paper,Non-Disabled,{Disabled}
+166,Person A reads with eyes,Non-Disabled,{Disabled}
+167,Person A talks naturally,Non-Disabled,{Disabled}
+168,Person A hears clearly,Non-Disabled,{Disabled}
+169,Person A memorizes lines easily,Non-Disabled,{Disabled}
+170,Person A follows conversations visually,Non-Disabled,{Disabled}
+171,Person A hears sounds naturally,Non-Disabled,{Disabled}
 172,Person A has servant,Rich,{Poor}
 173,Person A was born into manor,Rich,{Poor}
 174,Person A enjoys luxury lifestyle,Rich,{Poor}

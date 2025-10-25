@@ -1,122 +1,141 @@
 import streamlit as st
+import sqlite3
 import random
+import os
 import pandas as pd 
 import ast 
+from datetime import datetime
 import time 
-from pymongo import MongoClient
 
 # -----------------------------
 # Configuration
 # -----------------------------
+DB_NAME = "responses.db"
+QUESTION_CSV_FILE = "Question_dataset.csv" 
 DEFAULT_USER_NAME = "Annotator_Guest" 
 TIMER_DURATION_SECONDS = 20 # Minimum timer duration
 
-# MongoDB Configuration
-# NOTE: In deployment, the URI should be loaded from Streamlit Secrets (secrets.toml)
-# For local testing, replace the placeholder below with your actual URI.
-# The database and collection names are defined below.
-DB_NAME = "annotation_db"
-QUESTION_COLLECTION_NAME = "questions_collection"
-RESPONSE_COLLECTION_NAME = "responses_collection"
-
 # -----------------------------
-# MongoDB Setup
+# Database setup (UNCHANGED)
 # -----------------------------
 
-@st.cache_resource
 def init_db():
-    """Initializes the MongoDB client and returns the database object."""
-    try:
-        # Load URI from Streamlit Secrets (recommended for deployment)
-        MONGO_URI = st.secrets["mongo"]["uri"]
-    except KeyError:
-        st.error("MongoDB URI not found in Streamlit secrets. Please check your secrets.toml file.")
-        st.stop()
-        return None
+    """Initializes the SQLite database with necessary tables."""
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    
+    # Table for questions 
+    c.execute('''CREATE TABLE IF NOT EXISTS questions (
+                question_id INTEGER PRIMARY KEY,
+                question_text TEXT,
+                true_label TEXT,
+                others_options TEXT
+            )''')
+    
+    # Table for responses - allows any text label (Male, Female, Neutral, etc.)
+    c.execute('''CREATE TABLE IF NOT EXISTS responses (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_name TEXT,
+                question_id INTEGER,
+                response TEXT, 
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )''')
+    conn.commit()
+    conn.close()
 
+def load_questions_from_csv():
+    """Reads the structured questions from the CSV file and cleans others_options."""
     try:
-        client = MongoClient(MONGO_URI)
-        db = client[DB_NAME]
-        st.success("Successfully connected to MongoDB Atlas!")
-        return db
-    except Exception as e:
-        st.error(f"Error connecting to MongoDB: {e}")
-        st.stop()
-        return None
+        df = pd.read_csv(QUESTION_CSV_FILE)
+        df = df.rename(columns={'id': 'question_id', 'sentence': 'question_text'})
+        
+        def clean_options(option_str):
+            if isinstance(option_str, str):
+                clean_str = option_str.strip().strip('{}')
+                return [s.strip() for s in clean_str.split(',')]
+            return []
+            
+        df['others_options'] = df['others_options'].apply(clean_options)
+        
+        return df[['question_id', 'question_text', 'true_label', 'others_options']]
+    except FileNotFoundError:
+        st.error(f"Error: The file '{QUESTION_CSV_FILE}' was not found. Please ensure it is in the same directory.")
+        return pd.DataFrame() 
 
-db = init_db()
+def insert_questions_if_empty():
+    """Inserts data from the CSV into the questions table if it's empty."""
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM questions")
+    count = c.fetchone()[0]
+    
+    if count == 0:
+        st.info(f"Initializing database from {QUESTION_CSV_FILE}...")
+        df_questions = load_questions_from_csv()
+        
+        if not df_questions.empty:
+            df_questions['others_options_str'] = df_questions['others_options'].apply(str)
+            
+            data_to_insert = df_questions[['question_id', 'question_text', 'true_label', 'others_options_str']].values.tolist()
+            
+            c.executemany("""
+                INSERT INTO questions (question_id, question_text, true_label, others_options) 
+                VALUES (?, ?, ?, ?)
+            """, data_to_insert)
+            
+            conn.commit()
+            st.success(f"Successfully loaded {len(df_questions)} questions into the database.")
+        else:
+            st.warning("Could not load data from CSV. The 'questions' table remains empty. Cannot start assessment.")
+            
+    conn.close()
+
 
 # -----------------------------
 # Helper functions
 # -----------------------------
 def get_random_questions(user_name, n=20):
     """
-    Fetches n random questions from the MongoDB questions_collection.
-    No filtering is applied, allowing multiple annotations per question.
+    Fetches n random questions from the entire pool, ignoring past user responses, 
+    to allow for multiple annotations per question.
     """
-    if db is None:
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    
+    # Fetch all questions from the database
+    c.execute("SELECT question_id, question_text, true_label, others_options FROM questions")
+    all_questions = c.fetchall()
+    conn.close()
+    
+    if not all_questions:
+        # If the questions table is empty
         return []
-        
-    try:
-        questions_collection = db[QUESTION_COLLECTION_NAME]
-        
-        # MongoDB Aggregation Pipeline for efficient random sampling
-        pipeline = [
-            {"$sample": {"size": n}}
-        ]
-        
-        # Fetching data and transforming it for Streamlit's session state structure
-        results = list(questions_collection.aggregate(pipeline))
-        
-        # The function must return a list of tuples: (question_id, question_text, true_label, others_options_str)
-        questions_list = []
-        for doc in results:
-            # We assume 'others_options' is stored as a list in MongoDB
-            others_options_str = str(doc.get('others_options', [])) 
-            questions_list.append((
-                doc.get('question_id', str(doc['_id'])), # Use unique ID as fallback
-                doc.get('question_text', 'N/A'),
-                doc.get('true_label', 'N/A'),
-                others_options_str
-            ))
 
-        return questions_list
+    # Return a random sample of n questions (or fewer if less than n are available)
+    if len(all_questions) < n:
+        return all_questions
         
-    except Exception as e:
-        st.error(f"Error fetching questions from MongoDB: {e}")
-        return []
+    return random.sample(all_questions, n)
 
 def save_response(user_name, question_id, response):
-    """Saves a single user response (the selected label) to the MongoDB responses_collection."""
-    if db is None:
-        return
-        
-    try:
-        responses_collection = db[RESPONSE_COLLECTION_NAME]
-        
-        response_doc = {
-            "user_name": user_name,
-            "question_id": question_id,
-            "response": response,
-            "timestamp": datetime.now()
-        }
-        
-        responses_collection.insert_one(response_doc)
-        
-    except Exception as e:
-        # Note: In a production app, you would log this instead of showing an error
-        print(f"Error saving response to MongoDB: {e}")
-
+    """Saves a single user response (the selected label) to the database."""
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("""
+        INSERT INTO responses (user_name, question_id, response) 
+        VALUES (?, ?, ?)
+    """, (user_name, question_id, response))
+    conn.commit()
+    conn.close()
 
 # -----------------------------
 # Streamlit UI
 # -----------------------------
 st.set_page_config(page_title="Identify the Demographic", layout="centered")
 
-# --- INITIAL DATA LOAD ---
-# The logic to insert questions from CSV is removed from the app flow.
-# We trust that the questions collection is populated via the setup steps.
-# The session state setup below handles loading the questions for the first time.
+# Initialize DB and data
+init_db()
+insert_questions_if_empty()
 
 # -----------------------------
 # Session state setup
@@ -124,12 +143,14 @@ st.set_page_config(page_title="Identify the Demographic", layout="centered")
 if "user_name" not in st.session_state:
     st.session_state.user_name = DEFAULT_USER_NAME
 if "questions" not in st.session_state or not st.session_state.questions:
-    # Load initial batch of questions if session is new or questions list is empty
     st.session_state.questions = get_random_questions(st.session_state.user_name, 20)
 if "current_idx" not in st.session_state:
     st.session_state.current_idx = 0
 if "responses" not in st.session_state:
     st.session_state.responses = {}
+if "instructions_shown" not in st.session_state:
+    st.session_state.instructions_shown = False
+# Timer state variables
 if "timer_start_time" not in st.session_state:
     st.session_state.timer_start_time = None
 if "assessment_started" not in st.session_state:
@@ -138,8 +159,9 @@ if "assessment_started" not in st.session_state:
 
 def start_new_session():
     """Clears session state and resets for a new session."""
+    # This function is now only used as a clean way to exit/restart the app
+    # after the assessment is fully complete.
     st.session_state.clear()
-    
     st.session_state.user_name = DEFAULT_USER_NAME
     st.session_state.timer_start_time = None
     st.session_state.assessment_started = False 
@@ -174,18 +196,23 @@ def handle_answer_submission(response_value):
 
 if not st.session_state.assessment_started:
     
+    # --- HEADING DISPLAYED ONLY ON FIRST PAGE ---
     st.title("🧠 Identify the Demographic")
     st.markdown("---")
     
+    # 1. Set the timer start time on first load
     if st.session_state.timer_start_time is None:
         st.session_state.timer_start_time = time.time()
         
+    # 2. Calculate elapsed time
     elapsed_time = time.time() - st.session_state.timer_start_time
     time_remaining = max(0, TIMER_DURATION_SECONDS - int(elapsed_time))
     timer_expired = time_remaining == 0
     
+    # 3. Display instructions
     st.subheader("Task Instructions (Read Carefully!)")
     
+    # Placeholder for the timer/status display
     timer_placeholder = st.empty() 
     
     if not timer_expired:
@@ -211,6 +238,7 @@ if not st.session_state.assessment_started:
     """)
     st.markdown("---")
     
+    # 4. START BUTTON LOGIC
     st.button(
         "Start Assessment", 
         type="primary", 
@@ -218,30 +246,29 @@ if not st.session_state.assessment_started:
         on_click=start_assessment_button_handler
     )
 
+    # 5. Force a rerun to update the timer every second if not expired
     if not timer_expired:
         time.sleep(1)
         st.rerun()
 
 # -----------------------------
-# Assessment Running
+# Assessment Running (Only runs if assessment_started is True)
 # -----------------------------
-else: 
+else: # if st.session_state.assessment_started is True
     
     idx = st.session_state.current_idx
     questions = st.session_state.questions
 
     if not questions:
-        st.warning("No questions are available in the database. Please check the 'questions_collection' in your MongoDB.")
+        st.warning("No questions are available in the database. Please check the `Question_dataset.csv` file.")
 
     elif idx < len(questions):
         st.sidebar.markdown(f"**Current Session:** `{st.session_state.user_name}`")
         
         qid, qtext, true_label, others_options_str = questions[idx]
 
-        # --- DYNAMIC OPTION GENERATION (Adapted for MongoDB list structure) ---
+        # --- DYNAMIC OPTION GENERATION ---
         try:
-            # We assume others_options_str is a string representation of a Python list 
-            # (e.g., "['LabelC', 'LabelD']") coming from the document fetch.
             other_options_list = ast.literal_eval(others_options_str)
         except:
             other_options_list = [s.strip() for s in others_options_str.strip('[]{}').split(',')]
@@ -259,19 +286,41 @@ else:
         st.markdown(f"## Question {idx+1} of {len(questions)}")
         st.progress((idx+1)/len(questions))
         
+        # Display question card
         with st.container(border=True):
             st.subheader(qtext)
             st.markdown("---")
             st.markdown('<p style="font-size: 16px;"><b>Select the demographic label for Person A:</b></p>', unsafe_allow_html=True) 
 
+        # --- Response Buttons ---
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            st.button(option_labels[0], use_container_width=True, on_click=handle_answer_submission, args=(option_labels[0],), type="secondary")
+            st.button(
+                option_labels[0], 
+                use_container_width=True, 
+                on_click=handle_answer_submission, 
+                args=(option_labels[0],),
+                type="secondary"
+            )
+
         with col2:
-            st.button(option_labels[1], use_container_width=True, on_click=handle_answer_submission, args=(option_labels[1],), type="secondary")
+            st.button(
+                option_labels[1], 
+                use_container_width=True, 
+                on_click=handle_answer_submission, 
+                args=(option_labels[1],),
+                type="secondary"
+            )
+
         with col3:
-            st.button(option_labels[2], use_container_width=True, on_click=handle_answer_submission, args=(option_labels[2],), type="secondary")
+            st.button(
+                option_labels[2], 
+                use_container_width=True, 
+                on_click=handle_answer_submission, 
+                args=(option_labels[2],),
+                type="secondary"
+            )
 
 
     else:
@@ -282,5 +331,16 @@ else:
         st.markdown("Your responses are **invaluable** to us and to the community. **Cheers to you for helping us build Responsible and Safe AI systems!** 🤝")
         st.markdown("---")
         
-        st.write("Thank you for completing this batch of questions.")
+        unanswered_count = len(get_random_questions(st.session_state.user_name, 10000))
+        
+        # --- REMOVED THE "START NEXT ROUND" LOGIC ---
+        if unanswered_count > 0:
+            st.write("Thank you for completing this questions.")
+        
+        else:
+            st.write("Thank you for your hard work.")
+            st.success("You have successfully answered all available questions in the database!")
+            
+        # Provide a final exit/restart option
+        st.write("If you want annotate more sentences.")
         st.button("Start New Session (Re-load)", on_click=start_new_session, type="primary")
