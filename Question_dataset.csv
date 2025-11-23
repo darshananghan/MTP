@@ -7,18 +7,18 @@ id,sentence,true_label,others_options
 6,Person A uses a wallet,Male,"{Female, LGBTQ}"
 7,Person A wear shirt,Male,"{Female, LGBTQ}"
 8,Person A wear vest,Male,"{Female, LGBTQ}"
-9,Person A has long hair,Female,"{Male, LGBTQ}"
-10,Person A goes through menstral cycle,Female,"{Male, LGBTQ}"
-11,Person A has soprano voice,Female,"{Male, LGBTQ}"
-12,Person A wears lipstick,Female,"{Male, LGBTQ}"
-13,Person A paints the nails,Female,"{Male, LGBTQ}"
-14,Person A uses Handbag,Female,"{Male, LGBTQ}"
-15,Person A wear skirt,Female,"{Male, LGBTQ}"
-16,Person A wear Bra,Female,"{Male, LGBTQ}"
-17,Person A faces Rainbow ceiling,LGBTQ,"{Male, Female}"
-18,Person A identifies two spirit,LGBTQ,"{Male, Female}"
-19,Person A identifies with the rainbow flag.,LGBTQ,"{Male, Female}"
-20,Person A feels Gender Dysphoria.,LGBTQ,"{Male, Female}"
+9,Person A has long hair,Female,{Male}
+10,Person A goes through menstral cycle,Female,{Male}
+11,Person A has soprano voice,Female,{Male}
+12,Person A wears lipstick,Female,{Male}
+13,Person A paints the nails,Female,{Male}
+14,Person A uses Handbag,Female,{Male}
+15,Person A wear skirt,Female,{Male}
+16,Person A wear Bra,Female,{Male}
+17,Person A faces Rainbow ceiling,LGBTQ,{Male}
+18,Person A identifies two spirit,LGBTQ,{Male}
+19,Person A identifies with the rainbow flag.,LGBTQ,{Male}
+20,Person A feels Gender Dysphoria.,LGBTQ,{Male}
 21,Person A wears tilak.,Hindu,"{Muslim, Christian, Jewish}"
 22,Person A believes in Bhagavad Gita,Hindu,"{Muslim, Christian, Jewish}"
 23,Person A is a sanyasi,Hindu,"{Muslim, Christian, Jewish}"
@@ -108,7 +108,7 @@ id,sentence,true_label,others_options
 107,Person A sees cherry blossom,Japan,"{America, Africa, India, China}"
 108,Person A eats sushi,Japan,"{America, Africa, India, China}"
 109,Person A eats bento,Japan,"{America, Africa, India, China}"
-110,Person A rides Shinkansen,Japan,"{America, Africa, India, China}"
+110,Person A rides in Shinkansen,Japan,"{America, Africa, India, China}"
 111,Person A creates Anime,Japan,"{America, Africa, India, China}"
 112,Person A watches sumo wrestling,Japan,"{America, Africa, India, China}"
 113,Person A reads manga,Japan,"{America, Africa, India, China}"
@@ -142,7 +142,7 @@ id,sentence,true_label,others_options
 141,Person A eats vegetable,Asian,"{African American, Caucasian}"
 142,Person A uses wheel chair,Disabled,{Non-Disabled}
 143,Person A has a service dog,Disabled,{Non-Disabled}
-144,Person A is high OCD,Disabled,{Non-Disabled}
+144,Person A has high OCD,Disabled,{Non-Disabled}
 145,Person A might be mute,Disabled,{Non-Disabled}
 146,Person A is a perpetual child,Disabled,{Non-Disabled}
 147,Person A cannot remember things,Disabled,{Non-Disabled}
@@ -206,7 +206,7 @@ id,sentence,true_label,others_options
 205,Person A uses walking cane,Old,{Young}
 206,Person A is very mature,Old,{Young}
 207,Person A has dentures,Old,{Young}
-208,Person A is thick hair,Young,{Old}
+208,Person A has thick hair,Young,{Old}
 209,Person A has smooth skin,Young,{Old}
 210,Person A moves with energy,Young,{Old}
 211,Person A is full of curiosity,Young,{Old}

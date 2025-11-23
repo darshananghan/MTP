@@ -208,7 +208,6 @@ if not st.session_state.assessment_started:
     ### Guidelines
     * **Choose based on your opinion**: Select the label that best represents the demographic you infer from the statement.
     * **Use Don't know/Neutral when unsure**: If you are confused, feel the statement is ambiguous, or cannot confidently assign one of the two demographic labels, select **Don't know/Neutral**.
-    * **Search if needed**: If you are unfamiliar with a word or the context of the sentence, feel free to use a **Google search** to clarify your understanding before making a selection.
     """)
     st.markdown("---")
     st.button(
